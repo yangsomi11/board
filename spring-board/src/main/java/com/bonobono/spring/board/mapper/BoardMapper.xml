@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bonobono.spring.board.mapper.BoardMapper">
+
+<select id="selectBoard"
+		parameterType="int"
+		resultType="com.bonobono.spring.board.vo.Board">
+		SELECT 
+			board_no as boardNo, 
+			board_title as boardTitle,
+			board_user as boardUser,
+			board_date as boardDate 
+		FROM board 
+		WHERE board_no = #{boardNo}
+</select> 
+
+<!--<resultMap type="" id=""></resultMap>  컬럼명 일치  -->
+
+<select id="selectBoardList"
+		parameterType="java.util.Map"
+		resultType="com.bonobono.spring.board.vo.Board">
+		SELECT 
+			board_no as boardNo, 
+			board_title as boardTitle,
+			board_user as boardUser,
+			board_date as boardDate 
+		FROM board 
+		ORDER BY board_date DESC 
+		LIMIT #{currentPage}, #{rowPerPage}
+</select>
+
+
+<select id="selectBoardCount"
+		resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM board
+<!-- 다시 만들기 -->
+</select>
+
+
+<insert id="insertBoard"
+		parameterType="com.bonobono.spring.board.vo.Board">
+		INSERT INTO board(
+			board_pw ,
+			board_title ,
+			board_content ,
+			board_user ,
+			board_date  )
+		VALUES(
+			
+			#{boardPw},
+			#{boardTitle},
+			#{boardContent},
+			#{boardUser},
+			now()		
+		)
+		
+<!-- 	INSERT INTO board(board_no, board_pw, board_title, board_content, board_user, board_date, 
+		VALUES(' 1','1234', 'test', 'somi', 'yang','2019_02_04')  쿼리 성공
+-->
+</insert>
+
+
+<delete id="deleteBoard"
+		parameterType="com.bonobono.spring.board.vo.Board">
+		DELETE FROM board WHERE board_no = #{boardNo}
+</delete>
+
+
+<update id="updateBoard"
+		parameterType="com.bonobono.spring.board.vo.Board">
+		UPDATE board SET 
+			board_title = #{boardTitle}, 
+			board_content = #{boardContent} 
+		WHERE 
+			board_no='1' AND board_pw='1234'	
+<!-- UPDATE board SET board_title='TEST', board_content='change' WHERE board_no='1' AND board_pw='1234' 쿼리성공
+ --> 
+</update>
+
+</mapper>
