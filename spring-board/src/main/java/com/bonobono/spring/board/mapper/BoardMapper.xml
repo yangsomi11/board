@@ -76,7 +76,7 @@
 			board_title = #{boardTitle}, 
 			board_content = #{boardContent} 
 		WHERE 
-			board_no='1' AND board_pw='1234'	
+			board_no=#{boardNo} AND board_pw=#{boardPw}
 <!-- UPDATE board SET board_title='TEST', board_content='change' WHERE board_no='1' AND board_pw='1234' 쿼리성공
  --> 
 </update>

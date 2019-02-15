@@ -62,8 +62,9 @@ public class BoardService {
 		
 	}
 	
-	public int modifyBoard(Board board) {
-		return boardMapper.updateBoard(board);
+	public int modifyBoard(int boardNo) {
+		System.out.println("modifyBoard 실행, Service");
+		return boardMapper.updateBoard(boardNo);
 		
 	}
 	
