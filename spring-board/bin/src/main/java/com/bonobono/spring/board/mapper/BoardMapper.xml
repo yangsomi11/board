@@ -10,7 +10,6 @@
 		SELECT 
 			board_no as boardNo, 
 			board_title as boardTitle,
-			board_content as boardContent,
 			board_user as boardUser,
 			board_date as boardDate 
 		FROM board 
@@ -24,11 +23,11 @@
 		resultType="com.bonobono.spring.board.vo.Board">
 		SELECT 
 			board_no as boardNo, 
-			board_title as boardTitle, 
-			board_user as boardUser, 
-			board_date as boardDate
+			board_title as boardTitle,
+			board_user as boardUser,
+			board_date as boardDate 
 		FROM board 
-		ORDER BY board_no DESC 
+		ORDER BY board_date DESC 
 		LIMIT #{currentPage}, #{rowPerPage}
 </select>
 
@@ -73,13 +72,11 @@
 
 <update id="updateBoard"
 		parameterType="com.bonobono.spring.board.vo.Board">
-		UPDATE board 
-		SET 
+		UPDATE board SET 
 			board_title = #{boardTitle}, 
 			board_content = #{boardContent} 
 		WHERE 
-			board_no=#{boardNo} 
-		
+			board_no=#{boardNo} AND board_pw=#{boardPw}
 <!-- UPDATE board SET board_title='TEST', board_content='change' WHERE board_no='1' AND board_pw='1234' 쿼리성공
  --> 
 </update>

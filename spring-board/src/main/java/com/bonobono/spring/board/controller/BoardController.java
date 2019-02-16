@@ -1,4 +1,4 @@
-package com.bonobono.spring.board.controller;
+ package com.bonobono.spring.board.controller;
 
 import java.util.Map;
 
@@ -26,7 +26,11 @@ public class BoardController {
     	Map<String, Object> map = boardService.selectBoardList(currentPage);
     	
     	model.addAttribute("list", map.get("list"));
-    	return "/boardList";
+    	model.addAttribute("boardCount",map.get("boardCount"));
+    	model.addAttribute("lastPage",map.get("lastPage"));
+    	model.addAttribute("currentPage",currentPage);
+    	System.out.println("boardList 요청");
+    	return "boardList";
     }
     
     // 입력(액션) 요청 화면에서 입력받은값을 DB에 연결해서 데이처를 insert해주는 메서드
@@ -45,26 +49,29 @@ public class BoardController {
     }
     
   //삭제 할 nomber값을 받아와서 그 값의 데이터를 삭제하는 메서드
-    @GetMapping
+    @GetMapping("/removeBoard")
     public String boardDelete(@RequestParam(value="boardNo")int boardNo) {  	
     	boardService.removeBoard(boardNo);
 		return "redirect:/boardList";
     	
     }
     //수정 할 값을 받아와서 DB에 저장되어있는 데이터를 가져와 화면에 보여주는 메서드
-    @GetMapping("/boardUpdate")
-    public String boardUpdate(@RequestParam(value="boardNo")int boardNo) {
-		System.out.println("boardUpdate 실행, Controller");
-    	boardService.getBoard(boardNo);
-    	return "boardUpdate";
+    @GetMapping("/updateBoard")
+    public String updateBoard(@RequestParam(value="boardNo")int boardNo, Model model) {
+		System.out.println("updateBoard 실행, Controller");
+    	Board boardUpdate = boardService.getBoard(boardNo);
+    	model.addAttribute("board", boardUpdate);
+    	return "updateBoard";
     	
     }
-
-	/*
-	 * public String boardUpdate(@RequestParam(value="boardNo")int boardNo) {
-	 * System.out.println("boardUpdate 실행, Controller"); int result =
-	 * boardService.modifyBoard(boardNo); System.out.println("업데이트 쿼리 성공 여부 -> " +
-	 * result); return "boardUpdate";
-	 */
+    //DB에 저장되어있는 데이터를 수정하고 다시 DB에 저장하는 메서드
+    @PostMapping("/boardUpdateAction")
+	public String boardUpdateAction(Board board) {
+    	System.out.println("1boardUpdateAction 실행, Controller");
+		boardService.modifyBoard(board);
+		System.out.println("2boardUpdateAction 실행, Controller");
+		return "redirect:/boardList";
+		
+	}
     
 } 

@@ -10,16 +10,22 @@ import com.bonobono.spring.board.vo.Board;
 @Mapper
 public interface BoardMapper {
 	
-	Board selectBoard(int boardNo);//수정, 상세정보 등 한가지 정보를 가져올때 
+	//수정, 상세정보 등 한가지 정보를 가져올때 
+	Board selectBoard(int boardNo);
 	
-	List<Board> selectBoardList(Map<String, Integer> map); //두가지 이상 값을 가져오지 못해서 Map을 사용  
+	//list를 보여주기위해 두가지 이상 값을 가져오지 못해서 Map을 사용  
+	List<Board> selectBoardList(Map<String, Integer> map); 
 	
+	//페이징 전체갯수를 불러오기위해서 
 	int selectBoardCount(); 
 	
+	//DB에 추가
 	int insertBoard(Board board);
 	
-	int updateBoard(int board);
+	//값을 수정하고 DB에 수정한 값을 저장
+	int updateBoard(Board board);
 	
+	//한가지 데이터를 삭제
 	int deleteBoard(int boardNo);
 	
 	

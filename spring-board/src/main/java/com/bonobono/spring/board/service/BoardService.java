@@ -25,11 +25,11 @@ public class BoardService {
 		//1.
 		final int ROW_PER_PAGE = 10;  //상수로 지정 값을 변경 할 수 없다.
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("currentPage", currentPage);
+		map.put("currentPage", currentPage*ROW_PER_PAGE);
 		map.put("rowPerPage", ROW_PER_PAGE);  //request.setAttribute = map
 		//2.
 		int boardCount = boardMapper.selectBoardCount();
-		int lastPage = (int)(Math.ceil(boardCount / ROW_PER_PAGE)); //Math.ceil 올림 함수 = if문 써도 상관 없다.
+		int lastPage = (int)(Math.ceil(boardCount/ROW_PER_PAGE)); //Math.ceil 올림 함수 = if문 써도 상관 없다.
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		//넘어오는 리턴값과 넘겨주는 값까지 모두 변경
@@ -62,9 +62,9 @@ public class BoardService {
 		
 	}
 	
-	public int modifyBoard(int boardNo) {
+	public int modifyBoard(Board board) {
 		System.out.println("modifyBoard 실행, Service");
-		return boardMapper.updateBoard(boardNo);
+		return boardMapper.updateBoard(board);
 		
 	}
 	
