@@ -24,10 +24,21 @@
 				<td><a th:href="@{/removeBoard(boardNo=${b.boardNo})}" th:text="삭제"></a></td>
 			</tr>
 		</table>
+		
+		<!-- 첫 페이징 작업 이해  -->
+		
+<!-- 페이징작업을 위해서 처음버튼을 누르면 currentPage=0 현재 페이지를 0으로 해줬어용~ -->
 	<a th:href="@{/boardList(currentPage=0)}"><button th:text="처음"></button></a>
+	
+<!-- 만약에 현재페이지가 0보다 크면 list에서 currentPage-1 현재페이지에서 -1해주어서 이전에 페이지로 이동~ -->
 	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}"><button th:text="이전"></button></a>
+	
+<!-- 만약 마지막페이지가 현재 페이지보다 크면 list에서 currentPage+1 현재페이지에서 +1해주어서 다음 페이지로 이동~ -->
 	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}"><button th:text="다음"></button></a>
+	
+<!-- list에서 마지막 버튼을 누르면 lastPage로 이동하게 해줬어용~ -->
 	<a th:href="@{/boardList(currentPage=${lastPage})}"><button th:text="마지막"></button></a>
+	
 	<a th:href="@{/boardAdd}" ><button th:text="글등록하기"></button></a>  
 	</body>
 </html>
