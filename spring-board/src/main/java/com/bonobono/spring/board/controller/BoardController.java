@@ -20,6 +20,14 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
     
+    @GetMapping("/boardDetail")
+    public String boardDetail(int boardNo, Model model) {
+    	Board board = boardService.getBoard(boardNo);
+    	model.addAttribute("board",board);
+		return "boardDetail";
+    	
+    }
+    
     // 리스트 요청 전체 DB에 저장되어있는 데이터를 불러와서 리스트 화면에 나타내는 메서드
     @RequestMapping(value="/boardList")
     public String boardList(Model model, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {

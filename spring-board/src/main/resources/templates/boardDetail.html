@@ -8,22 +8,29 @@
 
 <table>
 	<tr>
-		<td>pw<input type="text" name="boardPw"></td>
+		<td>no<input th:value="${board.boardNo}" type="text" name="boardNo" readonly="readonly"></td>
 	</tr>
 	<tr>
-		<td>제목<input type="text" name="boardTitle"></td>
+		<td>제목<input th:value="${board.boardTitle}" type="text" name="boardTitle" readonly="readonly"></td>
+	</tr> 
+	<tr>
+		<td>컨텐츠<input th:value="${board.boardContent}" type="text" name="boardContent" readonly="readonly"></td>
 	</tr>
 	<tr>
-		<td>컨텐츠<input type="text" name="boardContent"></td>
+		<td>사용자<input th:value="${board.boardUser}" type="text" name="boardUser" readonly="readonly"></td>
 	</tr>
 	<tr>
-		<td>사용자<input type="text" name="boardUser"></td>
+		<td>등록날짜<input th:value="${board.boardDate}" type="text" name="boardDate"readonly="readonly"></td>
 	</tr>
 	<tr>
+		<td><input type="submit" value="수정하기"></td>
+	</tr>
+		<th>
+				<a th:href="@{/updateBoard(boardNo=${board.boardNo})}" ><button th:text="수정" class="btn btn-outline-info"></button></a>
+		</th>
 	
-	</tr>
 	</table>
 </form>
 
 </body>
-</html>
+</html> 
