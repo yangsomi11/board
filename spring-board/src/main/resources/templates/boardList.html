@@ -2,9 +2,18 @@
 
 <!--  list 화면 만들기    --> 
 	<head>
+ <title>Bootstrap Example</title>
+ <meta charset="utf-8">	
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>	
 	</head>
 	<body>
-		<table border=1>
+	<div class="container">
+	<h2>Spring BoardList</h2>
+	
+		<table class="table table-hover">
 			<tr>
 				<td>boardNo</td>
 				<td>boardTitle</td>
@@ -16,7 +25,7 @@
 			</tr>
 			<tr th:each="b : ${list}">
 				<td th:text= "${b.boardNo}"></td>
-				<td th:text= "${b.boardTitle}"></td>
+				<td><a th:href="@{/boardDetail(boardNo=${b.boardNo})}"><span th:text = "${b.boardTitle}"></span></a></td>
 				<td th:text= "${b.boardContent}"></td>
 				<td th:text= "${b.boardUser}"></td>
 				<td th:text= "${b.boardDate}"></td>
@@ -24,21 +33,23 @@
 				<td><a th:href="@{/removeBoard(boardNo=${b.boardNo})}" th:text="삭제"></a></td>
 			</tr>
 		</table>
+		</div>
 		
 		<!-- 첫 페이징 작업 이해  -->
 		
 <!-- 페이징작업을 위해서 처음버튼을 누르면 currentPage=0 현재 페이지를 0으로 해줬어용~ -->
-	<a th:href="@{/boardList(currentPage=0)}"><button th:text="처음"></button></a>
+	<a th:href="@{/boardList(currentPage=1)}"><button type="button" class="btn btn-default" th:text="처음"></button></a>
 	
 <!-- 만약에 현재페이지가 0보다 크면 list에서 currentPage-1 현재페이지에서 -1해주어서 이전에 페이지로 이동~ -->
-	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}"><button th:text="이전"></button></a>
+	<a th:if="${currentPage > 1}" th:href="@{/boardList(currentPage=${currentPage-1})}"><button type="button" class="btn btn-default" th:text="이전"></button></a>
 	
 <!-- 만약 마지막페이지가 현재 페이지보다 크면 list에서 currentPage+1 현재페이지에서 +1해주어서 다음 페이지로 이동~ -->
-	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}"><button th:text="다음"></button></a>
+	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}"><button type="button" class="btn btn-default" th:text="다음"></button></a>
 	
 <!-- list에서 마지막 버튼을 누르면 lastPage로 이동하게 해줬어용~ -->
-	<a th:href="@{/boardList(currentPage=${lastPage})}"><button th:text="마지막"></button></a>
+	<a th:href="@{/boardList(currentPage=${lastPage})}"><button type="button" class="btn btn-default" th:text="마지막"></button></a>
+	<br>
 	
-	<a th:href="@{/boardAdd}" ><button th:text="글등록하기"></button></a>  
+	<a th:href="@{/boardAdd}" ><button type="button" class="btn btn-default" th:text="글등록하기"></button></a>  
 	</body>
 </html>

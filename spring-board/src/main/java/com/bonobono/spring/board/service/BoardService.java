@@ -27,7 +27,7 @@ public class BoardService {
 		//1.
 		final int ROW_PER_PAGE = 10;  //상수로 지정 값을 변경 할 수 없다.
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("currentPage", currentPage*ROW_PER_PAGE);
+		map.put("currentPage", (currentPage-1)*ROW_PER_PAGE);
 		map.put("rowPerPage", ROW_PER_PAGE);  //request.setAttribute = map
 		//2.
 		int boardCount = boardMapper.selectBoardCount();
