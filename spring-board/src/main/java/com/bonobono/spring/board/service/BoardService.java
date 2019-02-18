@@ -53,8 +53,8 @@ public class BoardService {
 	}
 	
 	//삭제할 boardNo값을 담고 deleteBoard를 호출하는 메서드
-	public int removeBoard(int boardNo) {
-		return boardMapper.deleteBoard(boardNo);
+	public int removeBoard(Board board) {
+		return boardMapper.deleteBoard(board);
 		
 	}
 	

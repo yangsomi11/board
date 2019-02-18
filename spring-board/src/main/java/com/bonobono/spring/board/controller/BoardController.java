@@ -58,19 +58,31 @@ public class BoardController {
         return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
 
-
+    //삭제 할 값을 받아와서 DB에 저장되어있는 데이터를 가져와 화면에 보여주는 메서드
+    @GetMapping("/deleteBoard")
+    //list화면에서 삭제 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 getBoard메서드를 호출 입력한다.
+    public String deleteBoard(@RequestParam(value="boardNo")int boardNo, Model model) {
+		System.out.println("deleteBoard 실행, Controller");
+    	//getBoard를 호출한 후 return값을 boardUpdate변수에 담아준다.
+		Board boardDelete = boardService.getBoard(boardNo);
+		//model영역에 boardUpdate값을 board라는 이름으로 담아준다.
+    	model.addAttribute("board", boardDelete);
+    	return "boardDelete"; //단순히 forward해서 boardDelete 삭제확인 할 화면을 보여주는 메서드
+    	
+    }
+    
     
   //삭제 할 nomber값을 받아와서 그 값의 데이터를 삭제하는 메서드
-    @GetMapping("/removeBoard")
+    @PostMapping("/removeBoard")
     //list화면에서 삭제 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 removeBoard메서드를 호출 입력한다.
-    public String boardDelete(@RequestParam(value="boardNo")int boardNo) {  	
-    	boardService.removeBoard(boardNo);
+    public String boardDelete(Board board) {  	
+    	boardService.removeBoard(board);
 		return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     	
     }
     //수정 할 값을 받아와서 DB에 저장되어있는 데이터를 가져와 화면에 보여주는 메서드
     @GetMapping("/updateBoard")
-    //list화면에서 삭제 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 getBoard메서드를 호출 입력한다.
+    //list화면에서 수정 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 getBoard메서드를 호출 입력한다.
     public String updateBoard(@RequestParam(value="boardNo")int boardNo, Model model) {
 		System.out.println("updateBoard 실행, Controller");
     	//getBoard를 호출한 후 return값을 boardUpdate변수에 담아준다.

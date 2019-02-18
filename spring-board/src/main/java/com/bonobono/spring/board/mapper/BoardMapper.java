@@ -26,7 +26,9 @@ public interface BoardMapper {
 	int updateBoard(Board board);
 	
 	//한가지 데이터를 삭제
-	int deleteBoard(int boardNo);
+	int deleteBoard(Board board);
+
+	
 	
 	
 }

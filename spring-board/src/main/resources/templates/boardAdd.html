@@ -2,24 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-
-<form action="/boardAddAction" method="post">
+<div class="w3-card-4">
+  <div class="w3-container w3-light-grey">
+    <h2>Input Colors</h2>
+  </div>
+<form class="w3-container" action="/boardAddAction" method="post">
 <table>
 	<tr>
-		<td>pw<input type="text" name="boardPw"></td>
+	 	<p>
+		<label class="w3-text-grey"><b>비밀번호</b></label>
+		<input class="w3-input w3-border w3-white" type="text" name="boardPw">
+		</p>
 	</tr>
 	<tr>
-		<td>제목<input type="text" name="boardTitle"></td>
+		<p>
+		<label class="w3-text-grey"><b>제목</b></label>
+		<input class="w3-input w3-border w3-white" type="text" name="boardTitle">
+		</p>
 	</tr>
 	<tr>
-		<td>컨텐츠<input type="text" name="boardContent"></td>
+		<p>
+		<label class="w3-text-grey"><b>내용</b></label>
+		<textarea class="w3-input w3-border w3-white" rows="10"  name="boardContent">
+		</textarea>
+			
+		</p>
 	</tr>
 	<tr>
-		<td>사용자<input type="text" name="boardUser"></td>
+		<p>
+		<label class="w3-text-grey"><b>글쓴이</b></label>
+		<input  class="w3-input w3-border w3-white" type="text" name="boardUser">
+		</p>
 	</tr>
+	
 	<tr>
 		<td><input type="submit" value="추가하기"></td>
 	</tr>

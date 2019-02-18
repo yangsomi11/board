@@ -22,11 +22,9 @@
 	<tr>
 		<td>등록날짜<input th:value="${board.boardDate}" type="text" name="boardDate"readonly="readonly"></td>
 	</tr>
-	<tr>
-		<td><input type="submit" value="수정하기"></td>
-	</tr>
 		<th>
 				<a th:href="@{/updateBoard(boardNo=${board.boardNo})}" ><button th:text="수정" class="btn btn-outline-info"></button></a>
+				<a th:href="@{/deleteBoard(boardNo=${board.boardNo})}" ><button th:text="삭제" class="btn btn-outline-info"></button></a>
 		</th>
 	
 	</table>

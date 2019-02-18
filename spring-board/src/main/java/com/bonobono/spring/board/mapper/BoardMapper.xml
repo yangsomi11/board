@@ -71,6 +71,8 @@
 		DELETE FROM board 
 		WHERE 
 			board_no = #{boardNo} 
+		AND 
+			board_pw= #{boardPw}
 </delete>
 
 <!-- nober와 password가 같다면 title, content를 수정할 수 있는 쿼리 -->
