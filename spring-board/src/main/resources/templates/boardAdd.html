@@ -6,46 +6,47 @@
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container">
 <div class="w3-card-4">
-  <div class="w3-container w3-light-grey">
-    <h2>Input Colors</h2>
-  </div>
+  <div class="w3-text-grey">
+    <h2>칭찬하기</h2>
+   </div>
 <form class="w3-container" action="/boardAddAction" method="post">
-<table>
+<table class="table">
 	<tr>
-	 	<p>
-		<label class="w3-text-grey"><b>비밀번호</b></label>
-		<input class="w3-input w3-border w3-white" type="text" name="boardPw">
-		</p>
+	 	<td>
+		<label><b>비밀번호</b></label>
+		<input class="w3-input" type="text" name="boardPw">
+		</td>
 	</tr>
 	<tr>
-		<p>
-		<label class="w3-text-grey"><b>제목</b></label>
-		<input class="w3-input w3-border w3-white" type="text" name="boardTitle">
-		</p>
+		<td>
+		<label><b>제목</b></label>
+		<input class="w3-input" type="text" name="boardTitle">
+		</td>
 	</tr>
 	<tr>
-		<p>
-		<label class="w3-text-grey"><b>내용</b></label>
-		<textarea class="w3-input w3-border w3-white" rows="10"  name="boardContent">
+		<td>
+		<label><b>내용</b></label>
+		<textarea class="w3-input" rows="10"  name="boardContent">
 		</textarea>
 			
-		</p>
+		</td>
 	</tr>
 	<tr>
-		<p>
-		<label class="w3-text-grey"><b>글쓴이</b></label>
-		<input  class="w3-input w3-border w3-white" type="text" name="boardUser">
-		</p>
+		<td>
+		<label><b>글쓴이</b></label>
+		<input  class="w3-input" type="text" name="boardUser">
+		</td>
 	</tr>
 	
 	<tr>
-		<td><input type="submit" value="추가하기"></td>
+		<td><button th:text="추가하기" class="btn btn-outline-info"></button></td>
 	</tr>
 	</table>
 </form>
-
+</div>
 </body>
 </html> 

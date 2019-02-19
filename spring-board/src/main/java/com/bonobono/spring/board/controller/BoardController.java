@@ -20,6 +20,13 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
     
+    @GetMapping("/index")
+    public String index() {
+		return "index";
+    	
+    }
+    
+    
     @GetMapping("/boardDetail")
     public String boardDetail(int boardNo, Model model) {
     	Board board = boardService.getBoard(boardNo);

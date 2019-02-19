@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body class="container">
+<div class="w3-text-grey">
+    <h2>삭제하기</h2>
+</div>
 
-<title>게시판 삭제</title>
-<body>
-	<h1>삭제 폼</h1>
 <form action="/removeBoard" method="post">
-		<table id="customers">
+		<table class="w3-text-grey" id="customers">
 	<tr>
-		<td>boardNo :<input type="text" name="boardNo"
-					th:value="${board.boardNo}" readonly></td>
-			</tr>
-			<tr>
-	<td>boardPassword :<input type="text" name="boardPw"></td>
-		</tr>
-			<tr>
-		<td><input type="submit" value="삭제"></td>
-			</tr>
-		</table>
-	</form>
-	<a th:href="@{/boardList}"><button>돌아가기</button></a>
+		<td>
+			<label class="w3-text-grey"><b>글 등록번호</b></label>
+			<input class="w3-input" type="text" name="boardNo" th:value="${board.boardNo}" readonly>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label class="w3-text-grey"><b>비밀번호 확인</b></label>
+			<input class="w3-input" type="text" name="boardPw">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button th:text="삭제" class="btn btn-outline-info"></button>
+		</td>
+	</tr>
+</table>
+</form>
+ <a th:href="@{/boardList}"><button th:text="돌아가기" class="btn btn-outline-info"></button></a>
 </body>
 </html>
