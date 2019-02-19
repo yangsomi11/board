@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+	        $('#boardBtn').click(function(){
+	        	$('#boardAddForm').submit(function(event){
+	        		if($('#boardPw').val().length<4){
+		            	$('#boardPw').attr('placeholder','4자리이상 입력해주세요.');
+		            	$('#boardPw').focus();
+		            	return false;
+		            }else if($('#boardTitle').val().length<1){
+		            	$('#boardTitle').attr('placeholder','입력해주세요.');
+		            	$('#boardTitle').focus();
+		            	return false;
+		            }else if($('#boardContent').val().length<1){
+		            	$('#boardContent').attr('placeholder','입력해주세요.');
+		            	$('#boardContent').focus();
+		            	return false;
+		            }else if($('#boardUser').val().length<1){
+		            	$('#boardUser').attr('placeholder','입력해주세요.');
+		            	$('#boardUser').focus();
+		            	return false;
+		            }
+	        	});
+	        });
+	    });
+	</script>
+
 </head>
 <body class="container">
 <div class="w3-card-4">
   <div class="w3-text-grey">
-    <h2>칭찬하기</h2>
+    <h2>게시글 등록하기</h2>
    </div>
-<form class="w3-container" action="/boardAddAction" method="post">
+<form class="w3-container" action="/boardAddAction" method="post" id="boardAddForm">
 <table class="table">
 	<tr>
 	 	<td>
 		<label><b>비밀번호</b></label>
-		<input class="w3-input" type="text" name="boardPw">
+		<input class="w3-input" type="text" name="boardPw" id="boardPw">
 		</td>
 	</tr>
 	<tr>
 		<td>
 		<label><b>제목</b></label>
-		<input class="w3-input" type="text" name="boardTitle">
+		<input class="w3-input" type="text" name="boardTitle" id="boardTitle">
 		</td>
 	</tr>
 	<tr>
 		<td>
 		<label><b>내용</b></label>
-		<textarea class="w3-input" rows="10"  name="boardContent">
-		</textarea>
-			
+		<textarea class="w3-input" rows="10"  name="boardContent" id="boardContent"></textarea>
 		</td>
 	</tr>
 	<tr>
 		<td>
 		<label><b>글쓴이</b></label>
-		<input  class="w3-input" type="text" name="boardUser">
+		<input  class="w3-input" type="text" name="boardUser" id="boardUser">
 		</td>
 	</tr>
 	
 	<tr>
-		<td><button th:text="추가하기" class="btn btn-outline-info"></button></td>
+		<td><button th:text="추가하기" class="btn btn-outline-info" id="boardBtn"></button></td>
 	</tr>
 	</table>
 </form>
