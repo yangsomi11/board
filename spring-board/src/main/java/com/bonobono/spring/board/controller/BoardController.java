@@ -2,17 +2,19 @@
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bonobono.spring.board.service.BoardService;
 import com.bonobono.spring.board.vo.Board;
+import com.bonobono.spring.board.vo.BoardRequest;
 
 
 @Controller
@@ -26,13 +28,11 @@ public class BoardController {
     	
     }
     
-    
     @GetMapping("/boardDetail")
     public String boardDetail(int boardNo, Model model) {
     	Board board = boardService.getBoard(boardNo);
     	model.addAttribute("board",board);
 		return "boardDetail";
-    	
     }
     
     // 리스트 요청 전체 DB에 저장되어있는 데이터를 불러와서 리스트 화면에 나타내는 메서드
@@ -58,11 +58,17 @@ public class BoardController {
     }
     
     // 입력(액션) 요청 화면에서 입력받은값을 DB에 연결해서 데이처를 insert해주는 메서드
+    // 파일업로드 추가 -> 
     @PostMapping("/boardAddAction")
-    public String boardAddAction(Board board) {
+    public String boardAddAction(BoardRequest boardRequest, HttpServletRequest request) {
         //commend객체 -> 필드와 input type이 같아야 한다. 이름 = name ->setter
-    	boardService.insertBoard(board);
-        return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
+    	//1.board안에 fileList를 분해야여 DB에 들어갈수있는형태
+    	//2.파일저장 :  파일경로 src하위 upload폴더 생성 -> 저장
+    	String path = request.getSession().getServletContext().getRealPath("./upload");
+    	System.out.println("upload"+ path);
+    	boardService.insertBoard(boardRequest, path);
+
+    	return "redirect:/boardList";// 글입력후 "/boardList"로 리다이렉트(재요청)
     }
 
     //삭제 할 값을 받아와서 DB에 저장되어있는 데이터를 가져와 화면에 보여주는 메서드
@@ -78,7 +84,6 @@ public class BoardController {
     	
     }
     
-    
   //삭제 할 nomber값을 받아와서 그 값의 데이터를 삭제하는 메서드
     @PostMapping("/removeBoard")
     //list화면에서 삭제 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 removeBoard메서드를 호출 입력한다.
@@ -87,6 +92,7 @@ public class BoardController {
 		return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     	
     }
+    
     //수정 할 값을 받아와서 DB에 저장되어있는 데이터를 가져와 화면에 보여주는 메서드
     @GetMapping("/updateBoard")
     //list화면에서 수정 할 boardNo값을 받아와서 boardNo변수에 담고 그 값을 getBoard메서드를 호출 입력한다.
@@ -99,6 +105,7 @@ public class BoardController {
     	return "updateBoard"; //단순히 forward해서 updateBoard 수정 할 화면을 보여주는 메서드
     	
     }
+    
     //DB에 저장되어있는 데이터를 수정하고 다시 DB에 저장하는 메서드
     @PostMapping("/boardUpdateAction")
 	public String boardUpdateAction(Board board) {
@@ -108,5 +115,4 @@ public class BoardController {
 		return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청) 
 		
 	}
-    
 } 

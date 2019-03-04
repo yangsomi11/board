@@ -11,9 +11,14 @@
 	</head>
 	<body>
 	<div class="container">
+		<br>
 	<h2><li><a th:href="@{/index}">Board List</a></li></h2>
-
+		<br>
 		<table class="table table-hover">
+		<ul class="pager">
+		<li><a th:href="@{/boardAdd}" class="w3-bar-item w3-button">글 등록하기</a></li>
+		<br>
+		</ul>
 			<tr>
 				<td>boardNo</td>
 				<td>boardTitle</td>

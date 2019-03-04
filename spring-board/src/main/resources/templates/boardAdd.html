@@ -41,7 +41,8 @@
   <div class="w3-text-grey">
     <h2>게시글 등록하기</h2>
    </div>
-<form class="w3-container" action="/boardAddAction" method="post" id="boardAddForm">
+<form class="w3-container" action="/boardAddAction" method="post" id="boardAddForm"
+	  enctype="multipart/form-data">
 <table class="table">
 	<tr>
 	 	<td>
@@ -69,10 +70,13 @@
 	</tr>
 	
 	<tr>
+		
 		<td><button th:text="추가하기" class="btn btn-outline-info" id="boardBtn"></button></td>
+		<td><input type = "file" name="files" value="파일업로드" ></td>
 	</tr>
 	</table>
 </form>
+
 </div>
 </body>
 </html> 

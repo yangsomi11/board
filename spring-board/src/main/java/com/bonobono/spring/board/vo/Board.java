@@ -1,5 +1,9 @@
 package com.bonobono.spring.board.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Board { 
     private int boardNo;
     private String boardPw;
@@ -7,7 +11,8 @@ public class Board {
     private String boardContent;
     private String boardUser;
     private String boardDate;
-    public int getBoardNo() {
+    
+	public int getBoardNo() {
         return boardNo;
     }
     public void setBoardNo(int boardNo) {

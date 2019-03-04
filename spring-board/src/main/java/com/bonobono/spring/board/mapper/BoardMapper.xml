@@ -45,6 +45,11 @@
 <!-- 화면에서 입력받은 값을 DB에 저장하는 쿼리 -->
 <insert id="insertBoard"
 		parameterType="com.bonobono.spring.board.vo.Board">
+		
+		<selectKey resultType="int" keyProperty="boardNo" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        
 		INSERT INTO board(
 			board_pw ,
 			board_title ,
